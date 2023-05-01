@@ -13,9 +13,25 @@ public class Main
         processing.core.PApplet.runSketch( a, new MyVisual());		
 	}
 
+	public void scene3()
+	{
+		String[] a = {"MAIN"};
+		processing.core.PApplet.runSketch( a, new Scene3());		
+	}
+
+	public void joshuaTerrain() {
+		String[] a = {"MAIN"};
+		processing.core.PApplet.runSketch( a, new JoshuaTerrain());
+	}
+
+	public void mainVisuals() {
+		String[] a = {"MAIN"};
+		processing.core.PApplet.runSketch( a, new MainVisuals());
+	}
+
 	public static void main(String[] args)
 	{
 		Main main = new Main();
-		main.startUI();			
+		main.joshuaTerrain();			
 	}
 }
