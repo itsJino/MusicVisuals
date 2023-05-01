@@ -32,6 +32,7 @@ public class CianVisualizer extends Visual
 
     public void render()
     {
+        mv.colorMode(HSB);
         //float halfH = mv.height / 2;
         float halfW = mv.width / 2;
         float average = 0;
@@ -76,10 +77,10 @@ public class CianVisualizer extends Visual
             float f = mv.lerpedBuffer[i] * halfW * 1.0f;
             float x = MainVisual.map(i, 0, mv.getAudioPlayer().mix.size(), 0, mv.width);
 
-            //Map amplitude to stroke color in HSB
+            //Map amplitude to stroke color in rgb
             float hue = MainVisual.map(amplitude, -1, 1, 100, 120);
-            float saturation = MainVisual.map(amplitude, -1, 1, 200, 255);
-            float brightness = MainVisual.map(amplitude, -1, 1, 150, 255);
+            float saturation = MainVisual.map(amplitude, -1, 1, 160, 225);
+            float brightness = MainVisual.map(amplitude, -1, 1, 180, 225);
 
             //Draw lines with varying stroke weight and color
             if(f > 0)
@@ -115,7 +116,7 @@ public class CianVisualizer extends Visual
         mv.rotateX(PI / 2);
         mv.translate(-mv.width / 2, -mv.height / 2);
         mv.fill(0);
-        mv.stroke(255, 255, 255, 50);
+        mv.stroke(255, 50);
         for (int y = 10; y < cols - 1; y++) {
             mv.beginShape(TRIANGLE_STRIP);
             for (int x = 0; x < rows; x++) {
