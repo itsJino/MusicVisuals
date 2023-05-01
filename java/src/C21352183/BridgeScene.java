@@ -43,15 +43,11 @@ public class BridgeScene extends PApplet {
 
         minim = new Minim(this);
 
-        ap = minim.loadFile("bridge.mp3", 1024);
+        ap = minim.loadFile("starryeyed.mp3", 1024);
         ap.play();
         ab = ap.mix;
 
         fft = new FFT(1024, 44100);
-
-        System.out.println("setup");
-        System.out.println(rows);
-        System.out.println(cols);
 
         createSpheres(numSpheres);
     }
@@ -98,6 +94,28 @@ public class BridgeScene extends PApplet {
         }
     }
 
+    public void createTerrain(float yoff) {
+        for (int y = 0; y < cols; y++) {
+            float xoff = 0;
+            for (int x = 0; x < rows; x++) {
+                terrain[y][x] = map(noise(xoff, yoff), 0, 1, -terrainMax - smoothedAmplitude, terrainMax + smoothedAmplitude);
+                xoff += 0.4f;
+            }
+            yoff += 0.4f;   
+        }
+    }
+
+    public void drawTerrain() {
+        for (int y = 10; y < cols - 1; y++) {
+            beginShape(TRIANGLE_STRIP);
+            for (int x = 0; x < rows; x++) {
+                vertex(x * scl, y * scl, terrain[y][x]);
+                vertex(x * scl, (y + 1) * scl, terrain[y + 1][x]);
+            }
+            endShape();
+        }
+    }
+
     public void draw() {
         background(0);
         stroke(255);
@@ -133,17 +151,9 @@ public class BridgeScene extends PApplet {
         // Waves
         beginShape();
         flying -= smoothedAmplitude / 2;
-
         float yoff = flying;
 
-        for (int y = 0; y < cols; y++) {
-            float xoff = 0;
-            for (int x = 0; x < rows; x++) {
-                terrain[y][x] = map(noise(xoff, yoff), 0, 1, -terrainMax - smoothedAmplitude, terrainMax + smoothedAmplitude);
-                xoff += 0.4f;
-            }
-            yoff += 0.4f;   
-        }
+        createTerrain(yoff);
         
         translate(width / 6 + 200, (height / 2) + 15, -400);
         rotateX(PI / 2);
@@ -151,46 +161,14 @@ public class BridgeScene extends PApplet {
         fill(0);
         stroke(236, 221, 14);
         strokeWeight(1);
-        for (int y = 10; y < cols - 1; y++) {
-            beginShape(TRIANGLE_STRIP);
-            for (int x = 0; x < rows; x++) {
-                vertex(x * scl, y * scl, terrain[y][x]);
-                vertex(x * scl, (y + 1) * scl, terrain[y + 1][x]);
-            }
-            endShape();
-        }
+        drawTerrain();
         endShape();
         
-
         translate(+0, +0, +200);
         fill(0);
         stroke(236, 221, 14);
         strokeWeight(1);
-        for (int y = 10; y < cols - 1; y++) {
-            beginShape(TRIANGLE_STRIP);
-            for (int x = 0; x < rows; x++) {
-                vertex(x * scl, y * scl, terrain[y][x]);
-                vertex(x * scl, (y + 1) * scl, terrain[y + 1][x]);
-            }
-            endShape();
-        }
+        drawTerrain();
         endShape();
-        
-        /* 
-        translate(+0, +0, +130);
-        beginShape();
-        noFill();
-        fill(0, 0, 0);
-        stroke(255);
-        for (int y = 10; y < cols - 1; y++) {
-           beginShape(TRIANGLE_STRIP);
-           for (int x = 0; x < rows; x++) {
-               vertex(x * scl, y * scl, terrain[y][x]);
-               vertex(x * scl, (y + 1) * scl, terrain[y + 1][x]);
-           }
-           endShape();
-        }
-        endShape();
-        */
     }
 }

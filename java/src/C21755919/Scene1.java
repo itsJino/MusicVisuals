@@ -4,31 +4,60 @@ import ddf.minim.AudioBuffer;
 import ddf.minim.AudioInput;
 import ddf.minim.AudioPlayer;
 import ddf.minim.Minim;
-import processing.core.PApplet;
+import ie.tudublin.MainVisual;
+import java.util.Random;
 
-public class Scene1 extends PApplet {
-    Minim minim;
-    AudioPlayer ap;
-    AudioInput ai;
-    AudioBuffer ab;
-
-    int mode = 0;
-
-    float y = 0;
-    float smoothedY = 0;
-    float smoothedAmplitude = 0;
-
-    // Stars variables
-    int numStars = 250;
+public class Scene1 extends Visual {
+    
+    //Listing all the variables
+    int numStars;
+    int width;
+    int height;
     float[] starX = new float[numStars];
     float[] starY = new float[numStars];
     float[] starReact = new float[numStars];
 
     // Shooting stars variable
-    int numShootingStars = 20;
+    int numShootingStars;
     float[] shootingStarX = new float[numShootingStars];
     float[] shootingStarY = new float[numShootingStars];
     float[] shootingStarSpeed = new float[numShootingStars];
+    private MainVisual mv;
+
+    public Scene1(MainVisual mv) {
+        this.mv = mv;
+        numStars = 1000;
+        numShootingStars = 10;
+
+        createStars(numStars);
+
+        for (int i = 0; i < numShootingStars; i++) {
+            shootingStarX[i] = random(width);
+            shootingStarY[i] = random(height / 1.75f);
+            // setting a ranom limit between 50 and 250
+            shootingStarSpeed[i] = random(5, 500);
+        }
+    }
+
+    //Creating a method to fill stars array
+    public void createStars(int numStars) {
+        for (int i = 0; i < numStars; i++) {
+            starX[i] = random(width);
+            starY[i] = random(height / 1.5f);
+            // setting a ranom limit between 50 and 250
+            starReact[i] = random(20, 100);
+        }
+    }
+
+
+
+
+    int scl;
+    int w;
+    int h;
+    int rows;
+    int cols;
+    float flying;
 
     int scl = 30;
     int w = width;
@@ -46,51 +75,9 @@ public class Scene1 extends PApplet {
      * float elapsedTime = millis();
      */
 
-    public void keyPressed() {
-        if (key >= '0' && key <= '9') {
-            mode = key - '0';
-        }
-        if (keyCode == ' ') {
-            if (ap.isPlaying()) {
-                ap.pause();
-            } else {
-                ap.rewind();
-                ap.play();
-            }
-        }
-    }
-
     public void settings() {
         //size(1920, 1080, P3D);
         fullScreen(P3D);
-    }
-
-    public void setup() {
-        minim = new Minim(this);
-
-        // And comment the next two lines out
-        ap = minim.loadFile("starryeyed.mp3", 1024);
-        ap.play();
-        ab = ap.mix;
-        colorMode(HSB);
-
-        y = height / 2;
-        smoothedY = y;
-
-        for (int i = 0; i < numStars; i++) {
-            starX[i] = random(width);
-            starY[i] = random(height/ 1.5f);
-            // setting a ranom limit between 50 and 250
-            starReact[i] = random(20, 100);
-        }
-
-        for (int i = 0; i < numShootingStars; i++) {
-            shootingStarX[i] = random(width);
-            shootingStarY[i] = random(height / 1.75f);
-            // setting a ranom limit between 50 and 250
-            shootingStarSpeed[i] = random(5, 500);
-        }
-
     }
 
     float off = 0;
@@ -113,9 +100,6 @@ public class Scene1 extends PApplet {
         average = sum / (float) ab.size();
 
         smoothedAmplitude = lerp(smoothedAmplitude, average, 0.1f);
-
-        float cx = width / 2;
-        float cy = height / 2;
 
         float halfW = width / 2;
         float topOffset = height * 0.2f;
@@ -211,23 +195,5 @@ public class Scene1 extends PApplet {
             endShape();
         }
         endShape();
-
-        /*
-         * if (fadeAlpha < 255)
-         * {
-         * fadeAlpha += fadeSpeed;
-         * }
-         * 
-         * if (fadeAlpha > 0 && elapsedTime > 1)
-         * {
-         * fadeAlpha -= fadeSpeed;
-         * System.out.println(elapsedTime);
-         * }
-         * 
-         * fill(0, fadeAlpha);
-         * 
-         * rectMode(CENTER);
-         * rect(width / 2, height / 2, width, height);
-         */
     }
 }
