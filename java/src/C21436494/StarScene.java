@@ -37,9 +37,12 @@ public class StarScene extends Visual {
         float sx = MainVisual.map(x / z, 0, 1, 0, mv.width);
         float sy = MainVisual.map(y / z, 0, 1, 0, mv.height);
         float r = MainVisual.map(z, 0, mv.width / 2, 16, 0);
+
         mv.ellipse(sx / 2, sy / 2, r / 2, r / 2);
+        
         px = MainVisual.map(x / pz, 0, 1, 0, mv.width);
         py = MainVisual.map(y / pz, 0, 1, 0, mv.height);
+
         mv.stroke(255, 128);
         mv.line(sx, sy, px, py);
         px = sx;

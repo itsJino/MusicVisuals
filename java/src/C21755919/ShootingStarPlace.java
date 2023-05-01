@@ -7,7 +7,7 @@ import java.util.Random;
 import processing.core.*;
 import ie.tudublin.*;
 
-public class ShootingStarPlace {
+public class ShootingStarPlace extends Visual {
     MainVisual mv;
     public ArrayList<Cstar2> star2 = new ArrayList<Cstar2>();
 
@@ -30,6 +30,7 @@ public class ShootingStarPlace {
 
     public void drawShootingStars(ArrayList<Cstar2> star2) {
         Random r = new Random();
+        float trailAlpha = 50;
         //Drawing the stars randomly
         for (int i = 0; i < star2.size(); i++) {
             mv.stroke(0);
@@ -38,6 +39,14 @@ public class ShootingStarPlace {
             float x = star2.get(i).getShootingStarX();
             float y = star2.get(i).getShootingStarY();
             float speed = star2.get(i).getShootingStarSpeed();
+
+            //Drawing the trail
+            mv.fill(255, trailAlpha);
+            mv.ellipse(x + speed, y,
+                    mv.smoothedAmplitude * 1.25f, mv.smoothedAmplitude * 1.5f);
+
+            mv.ellipse(x + speed, y,
+                    mv.smoothedAmplitude * 0.75f, mv.smoothedAmplitude * 0.75f);
 
             // star2
             x -= speed + r.nextFloat(-2, 2);

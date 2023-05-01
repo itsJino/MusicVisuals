@@ -13,6 +13,7 @@ public class MainVisual extends Visual {
     public float flying;
     int mode = 0;
 
+    CianVisualizer cv = new CianVisualizer(this);
     StarPlace sp = new StarPlace(this);
     ShootingStarPlace ssp = new ShootingStarPlace(this);
     StarScene ss = new StarScene(this);
@@ -29,7 +30,7 @@ public class MainVisual extends Visual {
         getAudioPlayer().play();
         smooth();
         lerpedBuffer = new float[width];
-        sp.createStars(250, sp.stars, width, height, 30);
+        sp.createStars(250, sp.stars, width, height, 75);
         ssp.createShootingStars(10, ssp.star2, width, height, 30);
         ss.createStars2(250, ss.star3, width, height, 30, 0, 0, 0);
     }
@@ -39,15 +40,12 @@ public class MainVisual extends Visual {
         background(0);
         calculateAverageAmplitude();
         smoothed = getSmoothedAmplitude();
-        //sp.render(sp.stars);
-        //ssp.render(ssp.star2);
+        sp.render(sp.stars);
+        ssp.render(ssp.star2);
+        cv.render();
         //ss.render(ss.star3);
 
-        flying -= smoothed / 2;
-        float yoff = flying;
-
-        jt.createTerrain(yoff);
-        jt.render();
+        //jt.render();
     }
 
     public float[] getLerpedBuffer() {
