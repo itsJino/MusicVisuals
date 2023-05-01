@@ -1,18 +1,9 @@
 package C21755919;
 
-import ddf.minim.AudioBuffer;
-import ddf.minim.AudioInput;
-import ddf.minim.AudioPlayer;
-import ddf.minim.Minim;
-import ie.tudublin.MainVisual;
-import java.util.Random;
-
-public class Scene1 extends Visual {
-    
+public class Scene1 {
+    /*
     //Listing all the variables
     int numStars;
-    int width;
-    int height;
     float[] starX = new float[numStars];
     float[] starY = new float[numStars];
     float[] starReact = new float[numStars];
@@ -22,34 +13,6 @@ public class Scene1 extends Visual {
     float[] shootingStarX = new float[numShootingStars];
     float[] shootingStarY = new float[numShootingStars];
     float[] shootingStarSpeed = new float[numShootingStars];
-    private MainVisual mv;
-
-    public Scene1(MainVisual mv) {
-        this.mv = mv;
-        numStars = 1000;
-        numShootingStars = 10;
-
-        createStars(numStars);
-
-        for (int i = 0; i < numShootingStars; i++) {
-            shootingStarX[i] = random(width);
-            shootingStarY[i] = random(height / 1.75f);
-            // setting a ranom limit between 50 and 250
-            shootingStarSpeed[i] = random(5, 500);
-        }
-    }
-
-    //Creating a method to fill stars array
-    public void createStars(int numStars) {
-        for (int i = 0; i < numStars; i++) {
-            starX[i] = random(width);
-            starY[i] = random(height / 1.5f);
-            // setting a ranom limit between 50 and 250
-            starReact[i] = random(20, 100);
-        }
-    }
-
-
 
 
     int scl;
@@ -75,9 +38,33 @@ public class Scene1 extends Visual {
      * float elapsedTime = millis();
      */
 
+
+    /*
+
     public void settings() {
         //size(1920, 1080, P3D);
         fullScreen(P3D);
+    }
+
+    public void setup() {
+
+        y = height / 2;
+        smoothedY = y;
+
+        for (int i = 0; i < numStars; i++) {
+            starX[i] = random(width);
+            starY[i] = random(height/ 1.5f);
+            // setting a ranom limit between 50 and 250
+            starReact[i] = random(20, 100);
+        }
+
+        for (int i = 0; i < numShootingStars; i++) {
+            shootingStarX[i] = random(width);
+            shootingStarY[i] = random(height / 1.75f);
+            // setting a ranom limit between 50 and 250
+            shootingStarSpeed[i] = random(5, 500);
+        }
+
     }
 
     float off = 0;
@@ -195,5 +182,7 @@ public class Scene1 extends Visual {
             endShape();
         }
         endShape();
+        
     }
+    */
 }

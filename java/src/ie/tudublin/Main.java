@@ -22,16 +22,6 @@ public class Main
 		processing.core.PApplet.runSketch( a, new MainVisual());		
 	}
 
-	public void scene1()
-	{
-		String[] a = {"MAIN"};
-		processing.core.PApplet.runSketch( a, new Scene1());		
-	}
-
-	public void bridgeScene() {
-		String[] a = {"MAIN"};
-		processing.core.PApplet.runSketch( a, new BridgeScene());		
-	}
 
 	public static void main(String[] args)
 	{

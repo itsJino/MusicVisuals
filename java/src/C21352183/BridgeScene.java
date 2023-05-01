@@ -1,21 +1,9 @@
 package C21352183;
 
-import ddf.minim.AudioBuffer;
-// import ddf.minim.AudioBuffer;
-import ddf.minim.AudioInput;
-import ddf.minim.AudioPlayer;
-import ddf.minim.Minim;
-import ddf.minim.analysis.FFT;
-import processing.core.PApplet;
+import ie.tudublin.*;
 
-
-public class BridgeScene extends PApplet {
-    Minim minim;
-    AudioPlayer ap;
-    AudioInput ai;
-    AudioBuffer ab;
-
-    FFT fft;
+public class BridgeScene extends Visual {
+    MainVisual mv;
 
     int scl = 30;
     int terrainMax = 50;
@@ -33,33 +21,16 @@ public class BridgeScene extends PApplet {
     float[] sphereZ = new float[numSpheres];
     float[] sphereReact = new float[numSpheres];
 
-    public void settings() {
-        size(1920,1080, P3D);
-    }
-
-    public void setup() {
-        colorMode(RGB);
-        background(0);
-
-        minim = new Minim(this);
-
-        ap = minim.loadFile("starryeyed.mp3", 1024);
-        ap.play();
-        ab = ap.mix;
-
-        fft = new FFT(1024, 44100);
-
-        createSpheres(numSpheres);
-    }
-
-    float lerpedBuffer[] = new float[1024];
-
-    float smoothedAmplitude = 0;
-
     float halfWidth = width / 2;
     float halfHeight = height / 2;
 
     float moveSphere;
+
+    float smoothedAmplitude;
+
+    public BridgeScene(MainVisual mv) {
+        this.mv = mv;
+    }
 
     public void createSpheres(int numSpheres) {
         for(int i = 0; i < numSpheres; i++)
@@ -116,26 +87,20 @@ public class BridgeScene extends PApplet {
         }
     }
 
-    public void draw() {
+    
+
+    public void render() {
         background(0);
         stroke(255);
         noFill();
-        float average = 0;
-        float sum = 0;
+
+        smoothedAmplitude = mv.getSmoothedAmplitude();
+
         rotateY(-smoothedAmplitude / 2);
         rotateX(-smoothedAmplitude / 5);
 
 
         translate(halfWidth, halfHeight);
-
-        for (int i = 0; i < ab.size(); i++) {
-            sum += abs(ab.get(i));
-
-            lerpedBuffer[i] = lerp(lerpedBuffer[i], ab.get(i), 0.1f);
-        }
-        average = sum / (float) ab.size();
-
-        smoothedAmplitude = lerp(smoothedAmplitude, average, 0.1f);
 
         moveSphere += 2;
 
