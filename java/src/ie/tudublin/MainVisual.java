@@ -16,6 +16,7 @@ public class MainVisual extends Visual {
     StarPlace sp = new StarPlace(this);
     ShootingStarPlace ssp = new ShootingStarPlace(this);
     StarScene ss = new StarScene(this);
+    JoshuaTerrain jt = new JoshuaTerrain(this);
 
     public void settings() {
         fullScreen(P3D);
@@ -40,7 +41,13 @@ public class MainVisual extends Visual {
         smoothed = getSmoothedAmplitude();
         //sp.render(sp.stars);
         //ssp.render(ssp.star2);
-        ss.render(ss.star3);
+        //ss.render(ss.star3);
+
+        flying -= smoothed / 2;
+        float yoff = flying;
+
+        jt.createTerrain(yoff);
+        jt.render();
     }
 
     public float[] getLerpedBuffer() {

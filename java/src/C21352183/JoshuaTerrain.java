@@ -32,14 +32,30 @@ public class JoshuaTerrain {
         for (int y = 10; y < cols - 1; y++) {
             mv.beginShape();
             for (int x = 0; x < rows; x++) {
-                mv.vertex(x * scale, y * scale, terrain[y][x]);
-                mv.vertex(x * scale, (y + 1) * scale, terrain[y + 1][x]);
+                mv.vertex(x * scale, y * scale, terrainMap[y][x]);
+                mv.vertex(x * scale, (y + 1) * scale, terrainMap[y + 1][x]);
             }
             mv.endShape();
         }
     }
 
     public void render() {
+        mv.translate(mv.width / 6 + 200, (mv.height / 2) + 15, -400);
+        mv.rotateX(mv.PI / 2);
+        mv.translate(-mv.width / 2, -mv.height / 2);
         drawTerrain();
     }
-        }mv.mv.aeaeaeae]drawTerrain()terriain[][]float terrain[][];mmvv..
+
+    //getters and setters
+    public float[][] getTerrainMap() {
+        return terrainMap;
+    }
+
+    public int getRows() {
+        return rows;
+    }
+
+    public int getCols() {
+        return cols;
+    }
+}        
