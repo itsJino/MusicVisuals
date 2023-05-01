@@ -13,9 +13,14 @@ public class Main
         processing.core.PApplet.runSketch( a, new MyVisual());		
 	}
 
+	public void S2(){
+		String[] a = {"MAIN"};
+		processing.core.PApplet.runSketch( a, new scene2());		
+	}
+
 	public static void main(String[] args)
 	{
 		Main main = new Main();
-		main.startUI();			
+		main.S2();			
 	}
 }
