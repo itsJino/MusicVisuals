@@ -63,6 +63,11 @@ public abstract class Visual extends PApplet
 		smoothedAmplitude = PApplet.lerp(smoothedAmplitude, amplitude, 0.1f);
 	}
 
+	public void ResetCamera()
+	{
+		camera(width/2.0f, height/2.0f, (height/2.0f) / tan(PI*30.0f / 180.0f), width/2.0f, height/2.0f, 0f, 0f, 1f, 0f);
+	}
+
 
 	protected void calculateFrequencyBands() {
 		for (int i = 0; i < bands.length; i++) {
