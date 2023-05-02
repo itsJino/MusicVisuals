@@ -12,6 +12,7 @@ public class MainVisual extends Visual {
     public float smoothed;
     public float flying;
     int mode = 0;
+    int visual = 0;
 
     StarPlace sp = new StarPlace(this);
     ShootingStarPlace ssp = new ShootingStarPlace(this);
@@ -34,7 +35,17 @@ public class MainVisual extends Visual {
         // ss.createStars2(250, ss.star3, width, height, 30, 0, 0, 0);
     }
 
-    //Switch statement to switch between scenes
+    public void keyPressed() {
+        if (key == ' ') {
+            getAudioPlayer().cue(0);
+            getAudioPlayer().play();
+
+        }
+        if (key == '1') {
+            visual = 0;
+        }
+    }
+
     public void draw() {
         background(0);
         calculateAverageAmplitude();
@@ -43,7 +54,10 @@ public class MainVisual extends Visual {
         //ssp.render(ssp.star2);
         //ss.render(ss.star3);
 
+        
         jt.render();
+        
+
     }
 
     public float[] getLerpedBuffer() {
