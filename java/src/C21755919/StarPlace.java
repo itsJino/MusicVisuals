@@ -7,7 +7,7 @@ import java.util.Random;
 import processing.core.*;
 import ie.tudublin.*;
 
-public class StarPlace {
+public class StarPlace extends Visual{
     MainVisual mv;
     public ArrayList<Cstar> stars = new ArrayList<Cstar>();
 
