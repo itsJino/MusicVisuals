@@ -32,7 +32,7 @@ The song we chose for this assignment is "starryeyed" by Ellie Goulding. We felt
 ![Cian Scene 1](images/CMCKOOP.jpg)
 - The next scene I was involved in was scene 3, I worked on these scene with Ian and we created a visual that mathced the lyrics of the song(Carousels of Color)
 -How this was acheieved was by creating 5 different lines who's lenght and thickness is effected by the amplituded of the music, this is meant to represent the rides you would see on a carousel, we then added an outside ring of points which would rotate to give use the overall carousel shape, this is done through a TWO_PI loop and various points with different variables.
-![Cian & Ian Scene 3]
+![Cian & Ian Scene 3](images/C&I_OOP.jpg)
 
 # What I am most proud of in the assignment
 
