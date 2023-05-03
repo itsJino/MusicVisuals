@@ -26,6 +26,8 @@ The song we chose for this assignment is "starryeyed" by Ellie Goulding. We felt
 - We then have a main file which is used to run all of our visualtions this file is called MainVisual, this is an extend of the Visual file.
 - The MainVisual file starts the music and calls the needed methods from the visual file, such as getAmplitude.
 ----
+## Cian McKenna
+
 # What I am most proud of in the assignment
 
 # Markdown Tutorial
