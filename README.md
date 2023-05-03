@@ -6,6 +6,8 @@
 
 
 # Description of the assignment
+In this assignment we have a total of 5 different scenes that use Java Processing.
+The song we chose for this assignment is "starryeyed" by Ellie Goulding. We felt this song gave us good oppurtunties to create a narrative within our video and of course gave us many visualization oppurtunites. All of our visualisations respond to the amplitude and frequency of the music, this is doen through the minim library.
 
 # Instructions
 
