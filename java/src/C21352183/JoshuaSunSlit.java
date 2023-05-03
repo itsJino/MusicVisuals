@@ -9,24 +9,10 @@ public class JoshuaSunSlit extends Visual {
     int cols = 2000 / 30;
     float[][] terrain = new float[cols][rows];
 
-    int w = 1920;
-    int ht = 1080;
-
     public JoshuaSunSlit(MainVisual mv) {
         this.mv = mv;
 
-        topSlitY = ht / 2 - (sunRadius / 4);
-
-        slits = new Rectangle[6];
-
-        float y = topSlitY;
-        float h = 1.0f;
-        for (int i = 0; i < slits.length; i++) {
-            slits[i] = new Rectangle(y, h);
-
-            y += ((h / 2 + sunRadius) - topSlitY) / slits.length;
-            h = MainVisual.map(y, topSlitY, h / 2 + sunRadius, 1.0f, 40.0f);
-        }
+        createSlits();
     }
 
     float lerpedBuffer[] = new float[1024];
@@ -47,7 +33,7 @@ public class JoshuaSunSlit extends Visual {
     };
 
     int bgColor = color(0,0,30);
-    float sunRadius = 300;
+    float sunRadius = 500;
     float topSlitY;
     Rectangle[] slits;
 
@@ -55,26 +41,71 @@ public class JoshuaSunSlit extends Visual {
         float x, y, w, h;
 
         Rectangle(float y, float h) {
-            this.x = 960 - sunRadius;
+            this.x = mv.width / 2 - sunRadius;
             this.w = 2 * sunRadius;
             this.y = y;
             this.h = h;
         }
 
         void render() {
-            mv.fill(255);
-            mv.rect(x, y, w, h);
+            mv.fill(bgColor);
+            mv.rect(mv.width / 2 - sunRadius, y, w, h);
         }
 
         void update() {
-            y -= 0.5;
-      
+            y -= mv.smoothedAmplitude * 100;
+
             if (y < topSlitY) {
-              y = h / 2 + sunRadius;
+                y = 1080 / 2 + sunRadius;
             }
-      
-            h = MainVisual.map(y, topSlitY, h / 2 + sunRadius, 1.0f, 40.0f);
-          }
+
+            h = MainVisual.map(y, topSlitY + 150, 1080 / 2 + sunRadius, 1.0f, 40.0f);
+        }
+    }
+
+    public void createSlits() {
+        topSlitY = mv.height / 2 - (sunRadius / 4);
+
+        slits = new Rectangle[6];
+
+        float y = topSlitY + 1000;
+        float h = 1.0f;
+        for (int i = 0; i < slits.length; i++) {
+            slits[i] = new Rectangle(y, h);
+
+            y += ((mv.height / 2 + sunRadius) - topSlitY) / slits.length;
+            h = MainVisual.map(y, topSlitY, mv.height / 2 + sunRadius, 1.0f, 40.0f);
+        }
+    }
+
+    public void drawSun(float sum) {
+        mv.colorMode(RGB);
+        mv.background(bgColor);
+
+        mv.noStroke();
+        mv.fill(sunColors[0]);
+        mv.ellipse(mv.width / 2, mv.height / 2, 2 * sunRadius, 2 * sunRadius);
+
+        mv.loadPixels();
+
+        for (int i = 0; i < mv.pixels.length; i++) {
+
+            if (mv.pixels[i] == sunColors[0]) {
+                int y = i / mv.width;
+
+                float step = MainVisual.map(y, mv.height / 2 - sunRadius, mv.height / 2 + sunRadius, 0, 1.0f);
+
+                mv.pixels[i] = interpolateColor(sunColors, step);
+            }
+
+        }
+
+        mv.updatePixels();
+
+        for (Rectangle r : slits) {
+            r.update();
+            r.render();
+        }
     }
 
     public int interpolateColor(int[] arr, float step) {
@@ -95,11 +126,43 @@ public class JoshuaSunSlit extends Visual {
     public void createTerrain(float yoff) {
         for (int y = 0; y < cols; y++) {
             float xoff = 0;
-            for (int x = 0; x < rows; x++) {
-                terrain[y][x] = 0;
+            for (int x = 0; x < 25; x++) {
+                terrain[y][x] = MainVisual.map(noise(xoff, yoff), 0, 1, -30,150);
+                xoff += 0.4f;
+            }
+            for (int x = 26; x < 45; x++) {
+                terrain[y][x] = MainVisual.map(noise(xoff, yoff), 0, 1, -30,150);
+                xoff += 0.4f;
+            }
+            for (int x = 45; x < 50; x++) {
+                terrain[y][x] = MainVisual.map(noise(xoff, yoff), 0, 1, -30,80);
+                xoff += 0.4f;
+            }
+            for (int x = 51; x < 56; x++) {
+                terrain[y][x] = MainVisual.map(noise(xoff, yoff), 0, 1, -30,25);
+                xoff += 0.4f;
+            }
+            for (int x = 57; x < 61; x++) {
+                terrain[y][x] = MainVisual.map(noise(xoff, yoff), 0, 1, -30,80);
+                xoff += 0.4f;
+            }
+            for (int x = 61; x < 80; x++) {
+                terrain[y][x] = MainVisual.map(noise(xoff, yoff), 0, 1, -30,150);
+                xoff += 0.4f;
+            }
+            for (int x = 80; x < rows; x++) {
+                terrain[y][x] = MainVisual.map(noise(xoff, yoff), 0, 1, -30,150);
                 xoff += 0.4f;
             }
             yoff += 0.4f;   
+        }
+
+        for (int y = 0; y < 10; y++) {
+            float xoff = 0;
+            for (int x = 0; x < rows; x++) {
+                terrain[y][x] = MainVisual.map(noise(xoff, yoff), 0, 1, -30,100);
+                xoff += 0.4f;
+            }
         }
     }
 
@@ -111,32 +174,6 @@ public class JoshuaSunSlit extends Visual {
                 mv.vertex(x * 30, (y + 1) * 30, terrain[y + 1][x]);
             }
             mv.endShape();
-        }
-    }
-
-    public void drawSun(float sum) {
-        mv.noStroke();
-        mv.fill(sunColors[0]);
-        mv.ellipse(w / 2, ht / 2, 2 * sunRadius, 2 * sunRadius);
-
-        mv.loadPixels();
-
-        for (int i = 0; i < mv.pixels.length; i++) {
-
-            if (mv.pixels[i] == sunColors[0]) {
-                int y = i / w;
-
-                float step = MainVisual.map(y, ht / 2 - sunRadius, ht / 2 + sunRadius, 0, 1.0f);
-
-                mv.pixels[i] = interpolateColor(sunColors, step);
-            }
-        }
-
-        mv.updatePixels();
-
-        for (Rectangle r : slits) {
-            r.update();
-            r.render();
         }
     }
 
@@ -165,66 +202,19 @@ public class JoshuaSunSlit extends Visual {
         mv.endShape();
 
 
-        // mv.beginShape();
-        // flying -= mv.smoothedAmplitude * 5;
+        mv.beginShape();
+        flying -= mv.smoothedAmplitude;
 
-        // float yoff = flying;
+        float yoff = flying;
 
-        // for (int y = 0; y < cols; y++) {
-        //     float xoff = 0;
-        //     for (int x = 0; x < 25; x++) {
-        //         terrain[y][x] = MainVisual.map(noise(xoff, yoff), 0, 1, -30,150);
-        //         xoff += 0.4f;
-        //     }
-        //     for (int x = 26; x < 45; x++) {
-        //         terrain[y][x] = MainVisual.map(noise(xoff, yoff), 0, 1, -30,150);
-        //         xoff += 0.4f;
-        //     }
-        //     for (int x = 45; x < 50; x++) {
-        //         terrain[y][x] = MainVisual.map(noise(xoff, yoff), 0, 1, -30,80);
-        //         xoff += 0.4f;
-        //     }
-        //     for (int x = 51; x < 56; x++) {
-        //         terrain[y][x] = MainVisual.map(noise(xoff, yoff), 0, 1, -30,25);
-        //         xoff += 0.4f;
-        //     }
-        //     for (int x = 57; x < 61; x++) {
-        //         terrain[y][x] = MainVisual.map(noise(xoff, yoff), 0, 1, -30,80);
-        //         xoff += 0.4f;
-        //     }
-        //     for (int x = 61; x < 80; x++) {
-        //         terrain[y][x] = MainVisual.map(noise(xoff, yoff), 0, 1, -30,150);
-        //         xoff += 0.4f;
-        //     }
-        //     for (int x = 80; x < rows; x++) {
-        //         terrain[y][x] = MainVisual.map(noise(xoff, yoff), 0, 1, -30,150);
-        //         xoff += 0.4f;
-        //     }
-        //     yoff += 0.4f;   
-        // }
+        createTerrain(yoff);
 
-        // for (int y = 0; y < 10; y++) {
-        //     float xoff = 0;
-        //     for (int x = 0; x < rows; x++) {
-        //         terrain[y][x] = MainVisual.map(noise(xoff, yoff), 0, 1, -30,100);
-        //         xoff += 0.4f;
-        //     }
-        // }
-
-        // mv.translate(w / 6 + 10, (h / 2) + 70);
-        // mv.rotateX(PI / 2);
-        // mv.translate(-w / 2, -h / 2);
-        // mv.fill(0,0,20);
-        // mv.stroke(255,20,147);
-        // mv.strokeWeight(1);
-        // for (int y = 10; y < cols - 1; y++) {
-        //     mv.beginShape(TRIANGLE_STRIP);
-        //     for (int x = 0; x < rows; x++) {
-        //         mv.vertex(x * 30, y * 30, terrain[y][x]);
-        //         mv.vertex(x * 30, (y + 1) * 30, terrain[y + 1][x]);
-        //     }
-        //     mv.endShape();
-        // }
-        // mv.endShape();
+        mv.translate(mv.width / 6 + 10, (mv.height / 2) + 70);
+        mv.rotateX(PI / 2);
+        mv.translate(-mv.width / 2, -mv.height / 2);
+        mv.fill(0,0,20);
+        mv.stroke(255,20,147);
+        mv.strokeWeight(1);
+        drawTerrain();
     }
 }
