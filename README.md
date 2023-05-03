@@ -34,9 +34,29 @@ The song we chose for this assignment is "starryeyed" by Ellie Goulding. We felt
 -How this was acheieved was by creating 5 different lines who's lenght and thickness is effected by the amplituded of the music, this is meant to represent the rides you would see on a carousel, we then added an outside ring of points which would rotate to give use the overall carousel shape, this is done through a TWO_PI loop and various points with different variables.
 ![Cian & Ian Scene 3](images/C&I_OOP.jpg)
 ----
+
+## Ian Hipolito
+- I created one visulisation scene and worked with Joshua and Cian with two visulisation scenes.
+- The first visualisation I worked on is the scene with the two shapes (circles) and the stars. It renders a visual scene of stars (800 star objects) based on the audio input. The stars are randomly mapped and are updated and displayed. I randomly positioned the stars to make the scene look visually better as having the stars come out in the same position and not static everytime they are displayed would ruin the scene in my personal opinion. I also create shapes that are manipulated based on the audio input. I used trigonmetric functions and lerping for the position and to insure that the transitions are smooth.
+
+![Ian scene2](https://user-images.githubusercontent.com/114522074/236056824-28082d9a-5a96-4687-9369-9b36962a20f3.png)
+
+- The second visulisation I worked on is the third scene. I worked on this seen with my other group member Cian. This scene consists of rotating lines and circular shape (carousel) made up of dots, both are affected by the amplitude and react to the audio input. We spent a lot of time on how much the shapes react to the music as we did not want the length of the lines to surpass the carousel when it reacts to the audio, but in the end after lots of trial and error we managed to get to where we were both happy with it.
+
+![Ian & Cian scene3](https://user-images.githubusercontent.com/114522074/236058044-d21e135e-372d-4cb2-aa7c-82e586087698.png)
+
+# What I am most proud of in the assignment
+## Cian McKenna
+- Overall I'm very pleased with the way our project turned out, since in the middle of the project I felt the video lacked direction but we managed to create something good.
+- Also learning java, definetly please with how much experience this project has given me in java and working through all the many errors that we got.
+----
 # What I am most proud of in the assignment
 ## Cian McKenna
 - Overall I'm very pleased with the way our project turned out, since in the middle of the project I felt the video lacked direction but we managed to create something good.
 - Also learning java, definetly please with how much experience this project has given me in java and working through all the many errors that we got.
 
+## Ian Hipolito
+- Gaining a better understanding of object orientated programming concepts.
+- How to map and position objects on the screen better.
+- Gaining valuable team collaboration skills working as group in order to help code the scenes together and solve problems that would have taken longer to solve without another person looking at your code.
 
