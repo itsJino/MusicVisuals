@@ -20,8 +20,10 @@ The song we chose for this assignment is "starryeyed" by Ellie Goulding. We felt
 # Instructions
 - Compile and run main.java from ie.tudublin package
 - In order of appearance = {Scene1(Cian), Scene2(Ian), Scene3(Cian & Ian), Scene4(Joshua), Scene5(Joshua), , Scene1(Cian)}
-
+----
 # How it works
+- Each team member has its own directory containing the visualisations. 
+- Aggregate file GroupVisual.java is used to run the visualisations, initialise the music, create the objects and call the methods from the visualisations. This file has been moved to ie.tudublin package for convenience.
 
 # What I am most proud of in the assignment
 
