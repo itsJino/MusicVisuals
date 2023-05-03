@@ -44,11 +44,6 @@ The song we chose for this assignment is "starryeyed" by Ellie Goulding. We felt
 - The second visulisation I worked on is the third scene. I worked on this seen with my other group member Cian. This scene consists of rotating lines and circular shape (carousel) made up of dots, both are affected by the amplitude and react to the audio input. We spent a lot of time on how much the shapes react to the music as we did not want the length of the lines to surpass the carousel when it reacts to the audio, but in the end after lots of trial and error we managed to get to where we were both happy with it.
 
 ![Ian & Cian scene3](images/Ian_OOP.png)
-
-# What I am most proud of in the assignment
-## Cian McKenna
-- Overall I'm very pleased with the way our project turned out, since in the middle of the project I felt the video lacked direction but we managed to create something good.
-- Also learning java, definetly please with how much experience this project has given me in java and working through all the many errors that we got.
 ----
 # What I am most proud of in the assignment
 ## Cian McKenna
