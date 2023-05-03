@@ -29,6 +29,7 @@ The song we chose for this assignment is "starryeyed" by Ellie Goulding. We felt
 ## Cian McKenna
 - I created the opening scene of the project, this scene is meant to resemble an stary night sky aong with shooting stars and northern lights to visualise the music, also with moving terrain in the foreground.
 - To create this scene I created a randomly generated stars to fill up the sky, this is done through creating an arraylist of different parameters such as StarNum, x, y, StarReact, these parameters would all have random values to look more realistic. The northern lights visulizer is made by using by getting the size of amplitude in the audio player and creating lines that are controlled by the lerped buffer. The terrain is created by creating an array which changes values based on the noise function.
+![Cian Scene 1](images/CMCKOOP.jpg)
 
 # What I am most proud of in the assignment
 
