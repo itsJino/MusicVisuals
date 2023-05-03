@@ -18,6 +18,8 @@ The song we chose for this assignment is "starryeyed" by Ellie Goulding. We felt
 
 ----
 # Instructions
+- Compile and run main.java from ie.tudublin package
+- In order of appearance = {Scene1(Cian), Scene2(Ian), Scene3(Cian & Ian), Scene4(Joshua), Scene5(Joshua), , Scene1(Cian)}
 
 # How it works
 
