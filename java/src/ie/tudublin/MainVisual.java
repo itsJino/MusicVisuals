@@ -17,6 +17,8 @@ public class MainVisual extends Visual {
     StarPlace sp = new StarPlace(this);
     StarScene ss = new StarScene(this);
     JoshuaTerrain jt = new JoshuaTerrain(this);
+    JoshuaSunSlit jss = new JoshuaSunSlit(this);
+    JoshuaSunSlit2 jss2 = new JoshuaSunSlit2(this);
 
     public void settings() {
         fullScreen(P3D);
@@ -69,7 +71,7 @@ public class MainVisual extends Visual {
                 ss.render();
                 break;
             case 2:
-                jt.render();
+                jss2.render();
                 break;
         }
     }
