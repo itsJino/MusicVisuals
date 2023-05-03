@@ -6,7 +6,6 @@ import C21436494.*;
 import C21755919.*;
 
 public class MainVisual extends Visual {
-
     public float[] lerpedBuffer;
     public float[] Stars;
     public float smoothed;
