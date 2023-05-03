@@ -35,7 +35,7 @@ The song we chose for this assignment is "starryeyed" by Ellie Goulding. We felt
 ![Cian & Ian Scene 3](images/C&I_OOP.jpg)
 
 # What I am most proud of in the assignment
-
+----
 ##Cian McKenna
 - Overall I'm very pleased with the way our project turned out, since in the middle of the project I felt the video lacked direction but we managed to create something good.
 - Also learning java, definetly please with how much experience this project has given me in java and working through all the many errors that we got.
