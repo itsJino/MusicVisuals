@@ -20,7 +20,7 @@ public class StarPlace extends Visual{
 
         for (int i = 0; i < numStars; i++) {
             float x = r.nextFloat(mv.width);
-            float y = r.nextFloat(mv.height);
+            float y = r.nextFloat(mv.height / 1.75f);
             float react = r.nextFloat(50, 100);
             Cstar Cs;
             Cs = new Cstar(1, x, y, react);

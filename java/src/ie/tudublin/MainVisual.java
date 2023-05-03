@@ -34,7 +34,7 @@ public class MainVisual extends Visual {
         getAudioPlayer().play();
         smooth();
         lerpedBuffer = new float[width];
-        sp.createStars(500, sp.stars, width, height, 75);
+        sp.createStars(250, sp.stars, width, height, 75);
     }
 
     public void keyPressed() {
@@ -77,6 +77,14 @@ public class MainVisual extends Visual {
         average = sum / getAudioBuffer().size();
         // Move lerpedAverage 10% closer to average every frame
         lerpedAverage = lerp(lerpedAverage, average, 0.1f);
+
+        // 0:00 (Cian Star = 1)
+        // 0:36 (Ian Stars = 2)
+        // 1:02 (Colour Wheel = 4)
+        // 1:30 (Ian Stars = 2)
+        // 1:49 (JoshuaTerrain = 3)
+        // 2:16 (JoshuaSunSlit = 5)
+        // 2:44 (Cian Stars = 1)
 
         // Switch statement to switch between scenes
         switch (scene) {
