@@ -3,12 +3,20 @@
 # Youtube Video of Our Project
 [![YouTube](https://github.com/MK-CIAN/MusicVisuals/blob/master/images/OOP_Pic.jpg?raw=true)](https://youtu.be/flGGAfn6u8M)
 ----
+# Group Members
+| Name | Student Number |
+|-----------|-----------|
+|Cian McKenna | C21755919 |
+|Ian Hipolito | C21436494 |
+|Josua Flores | C21352183 |
 
+----
 
 # Description of the assignment
 In this assignment we have a total of 5 different scenes that use Java Processing.
 The song we chose for this assignment is "starryeyed" by Ellie Goulding. We felt this song gave us good oppurtunties to create a narrative within our video and of course gave us many visualization oppurtunites. All of our visualisations respond to the amplitude and frequency of the music, this is doen through the minim library.
 
+----
 # Instructions
 
 # How it works
