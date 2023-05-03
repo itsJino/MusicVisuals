@@ -22,9 +22,10 @@ The song we chose for this assignment is "starryeyed" by Ellie Goulding. We felt
 - In order of appearance = {Scene1(Cian), Scene2(Ian), Scene3(Cian & Ian), Scene4(Joshua), Scene5(Joshua), , Scene1(Cian)}
 ----
 # How it works
-- Each team member has its own directory containing the visualisations. 
-- Aggregate file GroupVisual.java is used to run the visualisations, initialise the music, create the objects and call the methods from the visualisations. This file has been moved to ie.tudublin package for convenience.
-
+- We created a folder for each team members scene's, these folders are named with our student numbers. 
+- We then have a main file which is used to run all of our visualtions this file is called MainVisual, this is an extend of the Visual file.
+- The MainVisual file starts the music and calls the needed methods from the visual file, such as getAmplitude.
+----
 # What I am most proud of in the assignment
 
 # Markdown Tutorial
