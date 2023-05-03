@@ -12,11 +12,11 @@ public class JoshuaTerrain extends Visual {
 
     float[][] terrain = new float[cols][rows];
 
-    int numSpheres = 100;
-    float[] sphereX = new float[numSpheres];
-    float[] sphereY = new float[numSpheres];
-    float[] sphereZ = new float[numSpheres];
-    float[] sphereReact = new float[numSpheres];
+    int numCubes = 100;
+    float[] cubesX = new float[numCubes];
+    float[] cubesY = new float[numCubes];
+    float[] cubesZ = new float[numCubes];
+    float[] cubesReact = new float[numCubes];
 
     float halfWidth = width / 2;
     float halfHeight = height / 2;
@@ -27,25 +27,47 @@ public class JoshuaTerrain extends Visual {
         this.mv = mv;
         this.terrain = new float[cols][rows];
 
-        for(int i = 0; i < numSpheres; i++)
+        for(int i = 0; i < numCubes; i++)
         {
-            sphereX[i] = random(-1000, 4000);
-            sphereY[i] = random(350, 550);
-            sphereZ[i] = random(-5000, 1000);
-            sphereReact[i] = random(0.1f, 0.5f);   
+            cubesX[i] = random(-1000, 4000);
+            cubesY[i] = random(350, 550);
+            cubesZ[i] = random(-5000, 1000);
+            cubesReact[i] = random(0.1f, 0.5f);   
+        }
+    }
+
+    public void createTerrain(float yoff) {
+        for (int y = 0; y < cols; y++) {
+            float xoff = 0;
+            for (int x = 0; x < rows; x++) {
+                terrain[y][x] = MainVisual.map(noise(xoff, yoff), 0, 1, -terrainMax - mv.smoothedAmplitude, terrainMax + mv.smoothedAmplitude);
+                xoff += 0.4f;
+            }
+            yoff += 0.4f;   
+        }
+    }
+
+    public void drawTerrain() {
+        for (int y = 10; y < cols - 1; y++) {
+            mv.beginShape(TRIANGLE_STRIP);
+            for (int x = 0; x < rows; x++) {
+                mv.vertex(x * 30, y * 30, terrain[y][x]);
+                mv.vertex(x * 30, (y + 1) * 30, terrain[y + 1][x]);
+            }
+            mv.endShape();
         }
     }
 
     public void drawSpheres(float zoff) {
-        for(int i = 0; i < numSpheres; i++)
+        for(int i = 0; i < numCubes; i++)
         {
-            float z = sphereZ[i] + zoff;
+            float z = cubesZ[i] + zoff;
             if(z < 1000)
             {
                 mv.pushMatrix();
                 mv.noFill();
                 mv.strokeWeight(2);
-                mv.translate(sphereX[i], sphereY[i], z);
+                mv.translate(cubesX[i], cubesY[i], z);
                 mv.rotateX(mv.frameCount * 0.01f);
                 mv.rotateY(mv.frameCount * 0.01f);
                 mv.box(20 + mv.smoothedAmplitude * 200);
@@ -53,13 +75,14 @@ public class JoshuaTerrain extends Visual {
             }
             else
             {
-                sphereZ[i] = random(-2000, 1000);
+                cubesZ[i] = random(-2000, 1000);
             }
             
         }
     }
 
     public void render() {
+        mv.colorMode(RGB);
         mv.background(0);
         mv.stroke(255);
         mv.noFill();
@@ -72,12 +95,12 @@ public class JoshuaTerrain extends Visual {
 
         float zoff = moveSphere;
 
+        drawSpheres(zoff);
+
         mv.pushMatrix();
         mv.rotateX(frameCount * 0.01f);
         mv.sphere(2000); 
         mv.popMatrix();
-
-        drawSpheres(zoff);
 
         // Waves
         mv.beginShape();
@@ -85,14 +108,7 @@ public class JoshuaTerrain extends Visual {
 
         float yoff = flying;
 
-        for (int y = 0; y < cols; y++) {
-            float xoff = 0;
-            for (int x = 0; x < rows; x++) {
-                terrain[y][x] = MainVisual.map(noise(xoff, yoff), 0, 1, -terrainMax - mv.smoothedAmplitude, terrainMax + mv.smoothedAmplitude);
-                xoff += 0.4f;
-            }
-            yoff += 0.4f;   
-        }
+        createTerrain(yoff);
         
         mv.translate(mv.width / 6 + 200, (mv.height / 2) + 15, -400);
         mv.rotateX(PI / 2);
@@ -100,28 +116,14 @@ public class JoshuaTerrain extends Visual {
         mv.fill(0);
         mv.stroke(236, 221, 14);
         mv.strokeWeight(1);
-        for (int y = 10; y < cols - 1; y++) {
-            mv.beginShape(TRIANGLE_STRIP);
-            for (int x = 0; x < rows; x++) {
-                mv.vertex(x * 30, y * 30, terrain[y][x]);
-                mv.vertex(x * 30, (y + 1) * 30, terrain[y + 1][x]);
-            }
-            mv.endShape();
-        }
+        drawTerrain();
         mv.endShape();
         
         mv.translate(+0, +0, +200);
         mv.fill(0);
         mv.stroke(236, 221, 14);
         mv.strokeWeight(1);
-        for (int y = 10; y < cols - 1; y++) {
-            mv.beginShape(TRIANGLE_STRIP);
-            for (int x = 0; x < rows; x++) {
-                mv.vertex(x * 30, y * 30, terrain[y][x]);
-                mv.vertex(x * 30, (y + 1) * 30, terrain[y + 1][x]);
-            }
-            mv.endShape();
-        }
+        drawTerrain();
         mv.endShape();
     }
 }        

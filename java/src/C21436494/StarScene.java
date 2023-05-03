@@ -20,6 +20,7 @@ public class StarScene extends Visual{
 
 
     public void render() {
+        mv.colorMode(RGB);
         mv.background(0);
         mv.translate(mv.width / 2, mv.height / 2);
 
@@ -42,10 +43,11 @@ public class StarScene extends Visual{
         }
 
         average = sum / mv.getAudioPlayer().mix.size();
-        mv.smoothedAmplitude = lerp(mv.smoothedAmplitude, average, 0.1f);
+        mv.smoothedAmplitude = MainVisual.lerp(mv.smoothedAmplitude, average, 0.1f);
 
         mv.beginShape();
         mv.noFill();
+        mv.strokeWeight(2);
         for (int i = 0; i < mv.getAudioPlayer().mix.size(); i++) {
             float c = MainVisual.map(i, 0, mv.getAudioPlayer().mix.size(), 0, 255);
             mv.stroke(c, 255, 255);
