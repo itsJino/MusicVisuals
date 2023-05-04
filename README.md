@@ -56,7 +56,7 @@ Lastly, I used a large circle to encase the entire scene, adding more to the bla
 - The next visual I worked on was the Sunset with the valley. Ian created the Sun element of the visuals, which I incorporatde into the scene. The sun is slimply an ellipse with a gradient of colours. The slits which travel over the sun are created using Rectangles, which form and update their position. As they move higher along the sun, the slits become smaller and smaller, creating a cool effect. The speed that the slits move is affected by the amplitude of the music, moving faster as the music becomes louder. 
 - The terrain in this scene is also formed using perlin noise. But in this case, the terrain is divided into different sections. Each section has its own max height which the perlin noise can go to, allowing for a dynamic terrain structure. With the center having the lowest max height, the further you travel outwards along the y axis, the taller the terrain becomes. Like the other scenes, the louder the music,the faster the terrain moves.
 
-![Joshua & Ian: Scene 5](images/JF_Terrain.png)
+![Joshua & Ian: Scene 5](images/OOP_Pic.jpg)
 
 # What I am most proud of in the assignment
 ----
@@ -68,4 +68,8 @@ Lastly, I used a large circle to encase the entire scene, adding more to the bla
 - Gaining a better understanding of object orientated programming concepts.
 - How to map and position objects on the screen better.
 - Gaining valuable team collaboration skills working as group in order to help code the scenes together and solve problems that would have taken longer to solve without another person looking at your code.
+
+## Joshua Flores
+- I am proud of what we were able to create as a group. We collaborated well with each other and helped each other whenever we needed it.
+- I learned a lot about perlin noise, and how 3D objects are created. My overall understanding of Object Oriented Programming has definitely imporoved, especially in Java. 
 
